@@ -11,6 +11,7 @@ import { CartComponent } from './cart/cart.component';
 import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: HeroSectionComponent },
@@ -24,6 +25,16 @@ const routes: Routes = [
   { path: 'add-user', component: AddUserComponent },
   { path: 'cart', component: CartComponent },
   { path: 'admin-products', component: ProductListComponent },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    children: [
+      { path: 'add-product', component: AddProductComponent },
+      { path: 'edit-product', component: EditProductComponent },
+      { path: 'add-user', component: AddUserComponent },
+      { path: 'edit-user', component: EditUserComponent },
+    ],
+  },
   // { path: '', redirectTo: '/products', pathMatch: 'full' }
 ];
 

@@ -20,6 +20,7 @@ import { FeatureComponent } from './feature/feature.component';
 import { BannerComponent } from './banner/banner.component';
 import { FactComponent } from './fact/fact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     BannerComponent,
     FactComponent,
     ProductDetailsComponent,
+    DashboardComponent,
 
   ],
   imports: [
