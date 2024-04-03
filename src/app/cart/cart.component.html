@@ -1,4 +1,4 @@
-<h1 style="text-align: center; margin-top: 200PX;" >Your Cart</h1>
+<h1 style="text-align: center; margin-top: 200px">Your Cart</h1>
 <!-- <div style="display: flex"> -->
 <table class="table">
   <thead>
@@ -15,11 +15,7 @@
   <tbody>
     <tr *ngFor="let product of products; let i = index">
       <td>
-        <img
-          [src]="'https://example.com/default-image.jpg'"
-          alt="Product"
-          class="img-circle"
-        />
+        <img src="../../assets/images/1.jpg" alt="Product" width="50px" />
       </td>
       <td>{{ product.productId.title }}</td>
       <td>
@@ -29,11 +25,15 @@
       <td>
         <div class="input-group quantity mt-4" style="width: 100px">
           <div class="input-group-btn">
-            <button class="btn btn-sm btn-minus rounded-circle bg-light border"  (click)="decreaseQuantity(product.productId._id)">
-<i class="fa fa-minus"></i>
+            <button
+              class="btn btn-sm btn-minus rounded-circle bg-light border tt"
+              (click)="decreaseQuantity(product.productId._id)"
+            >
+              <i class="fa fa-minus"></i>
             </button>
           </div>
           <input
+            style="position: relative; top: -10px"
             [(ngModel)]="product.quantity"
             [ngModelOptions]="{ standalone: true }"
             min="1"
@@ -43,15 +43,23 @@
             class="form-control form-control-sm text-center border-0"
           />
           <div class="input-group-btn">
-            <button class="btn btn-sm btn-plus rounded-circle bg-light border" (click)="increaseQuantity(product.productId._id)">
-            <i class="fa fa-plus"></i>
+            <button
+              class="btn btn-sm btn-plus rounded-circle bg-light border tt"
+              (click)="increaseQuantity(product.productId._id)"
+            >
+              <i class="fa fa-plus"></i>
             </button>
           </div>
         </div>
       </td>
       <td>{{ product.productId.price | currency }}</td>
       <td>{{ product.quantity * product.productId.price | currency }}</td>
-      <button class="btn btn-md rounded-circle bg-light border mt-4" (click)="deleteCart(product.productId._id)"><i class="fa fa-times text-danger"></i></button>
+      <button
+        class="btn btn-md rounded-circle bg-light border mt-4 tt"
+        (click)="deleteCart(product.productId._id)"
+      >
+        <i class="fa fa-times text-danger"></i>
+      </button>
     </tr>
     <!-- <tr>
       <td colspan="3" class="text-end"><strong>Total Price:</strong></td>

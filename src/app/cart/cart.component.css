@@ -19,7 +19,7 @@ h1 {
   text-align: center;
   border-bottom: 1px solid #dee2e6;
 }
-td{
+td {
   vertical-align: bottom;
 }
 
@@ -73,7 +73,7 @@ h2 {
 }
 a {
   text-decoration: none;
-  color: #BCA68E;
+  color: #bca68e;
 }
 button {
   color: gray;
@@ -81,16 +81,26 @@ button {
 button:hover {
   background-color: gray;
 }
-a:hover {
+/* a:hover {
   text-decoration: none;
   color: white;
-}
+} */
 #mtt {
   position: relative;
 
   top: 25%;
 }
-td {
-  height: 50px;
-  vertical-align: bottom;
+.tt {
+  position: relative;
+
+  bottom: 30%;
 }
+td {
+  vertical-align: middle;
+}
+
+/* #mt {
+  position: relative;
+
+  top: -25%;
+} */
