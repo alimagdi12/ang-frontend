@@ -1,0 +1,142 @@
+<h1 style="text-align: center; margin-top: 200PX;" >Your Cart</h1>
+<!-- <div style="display: flex"> -->
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Product</th>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col" style="text-align: left">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Total</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products; let i = index">
+      <td>
+        <img
+          [src]="'https://example.com/default-image.jpg'"
+          alt="Product"
+          class="img-circle"
+        />
+      </td>
+      <td>{{ product.productId.title }}</td>
+      <td>
+        {{ product.productId.description }}
+      </td>
+      <!-- <td>{{ product.quantity }}</td> -->
+      <td>
+        <div class="input-group quantity mt-4" style="width: 100px">
+          <div class="input-group-btn">
+            <button class="btn btn-sm btn-minus rounded-circle bg-light border"  (click)="decreaseQuantity(product.productId._id)">
+<i class="fa fa-minus"></i>
+            </button>
+          </div>
+          <input
+            [(ngModel)]="product.quantity"
+            [ngModelOptions]="{ standalone: true }"
+            min="1"
+            type="text"
+            value="1"
+            name=""
+            class="form-control form-control-sm text-center border-0"
+          />
+          <div class="input-group-btn">
+            <button class="btn btn-sm btn-plus rounded-circle bg-light border" (click)="increaseQuantity(product.productId._id)">
+            <i class="fa fa-plus"></i>
+            </button>
+          </div>
+        </div>
+      </td>
+      <td>{{ product.productId.price | currency }}</td>
+      <td>{{ product.quantity * product.productId.price | currency }}</td>
+      <button class="btn btn-md rounded-circle bg-light border mt-4" (click)="deleteCart(product.productId._id)"><i class="fa fa-times text-danger"></i></button>
+    </tr>
+    <!-- <tr>
+      <td colspan="3" class="text-end"><strong>Total Price:</strong></td>
+      <td><strong>{{ totalPrice | currency }}</strong></td>
+    </tr> -->
+  </tbody>
+</table>
+<!-- <table class="table table2" style="width: 30%">
+  <tr>
+    <th>Summary</th>
+  </tr>
+  <tr>
+    <td><strong> Sub Total: </strong>{{ totalPrice | currency }}</td>
+  </tr>
+  <tr>
+    <td><strong> Shipping: </strong>Flat Rate: $30.00</td>
+  </tr>
+  <tr>
+    <td><strong> Total Price: </strong>{{ totalPrice + 30 | currency }}</td>
+  </tr>
+  <tr>
+    <td>
+      <button type="button" class="btn btn-danger mt-3">Order Now</button>
+    </td>
+  </tr>
+</table> -->
+
+<!-- <div class="mt-5" id="mtt">
+  <input
+    type="text"
+    class="border-0 border-bottom rounded me-5 py-3 mb-4"
+    placeholder="Coupon Code"
+  />
+  <button
+    class="btn border-secondary rounded-pill px-4 py-3 text-primary"
+    type="button"
+  >
+    Apply Coupon
+  </button>
+</div> -->
+<div class="row g-4 justify-content-end">
+  <div class="col-8"></div>
+  <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
+    <div class="bg-light rounded">
+      <div class="p-4">
+        <h1 class="display-6 mb-4">
+          <b>Bag</b><span class="fw-normal">Total</span>
+        </h1>
+        <div class="d-flex justify-content-between mb-4">
+          <h5 class="mb-0 me-4">Subtotal:</h5>
+          <p class="mb-0">{{ totalPrice | currency }}</p>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h5 class="mb-0 me-4">Shipping</h5>
+          <div class="">
+            <p class="mb-0">Flat rate: $30.00</p>
+          </div>
+        </div>
+        <!-- <p class="mb-0 text-end">Shipping to Ukraine.</p> -->
+      </div>
+      <div
+        class="py-4 mb-4 border-top border-bottom d-flex justify-content-between"
+      >
+        <h5 class="mb-0 ps-4 me-4">Total</h5>
+        <p class="mb-0 pe-4">{{ totalPrice + 30 | currency }}</p>
+      </div>
+      <button
+        class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4"
+        type="button"
+      >
+        <a href="orders.html">Proceed to orders</a>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- </div> -->
+
+<!-- <span class="input-group-text"
+          >${{ product.quantity * product?.price | number : "1.2-2" }}</span
+        > -->
+
+<!-- <tr>
+      <td colspan="3" class="text-end"><strong>Total Price:</strong></td>
+      <td>
+        <strong>{{ totalPrice | currency }}</strong>
+      </td>
+    </tr> -->

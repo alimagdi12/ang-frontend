@@ -1,0 +1,53 @@
+<!-- <h1 style="color: black; margin-top: 200px">product details</h1> -->
+<div class="container-fluid fruite py-5 mt-5">
+  <div class="container py-5">
+    <h1 class="mb-4 fw-bold">Browse our shop</h1>
+<h1></h1>
+    <div class="row g-4">
+      <div class="col-lg-12">
+        <div class="row g-4 justify-content-center">
+          <div *ngIf="product" class="col-md-3 col-xl-4">
+            <div class="rounded position-relative fruite-item">
+              <div class="fruite-img">
+                <img
+                  src="../../assets/images/1.jpg"
+                  class="img-fluid w-100 rounded-top"
+                  alt=""
+                />
+              </div>
+              <div
+                class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                style="top: 10px; left: 10px"
+              >
+                New
+              </div>
+              <div
+                class="p-4 border border-secondary border-top-0 rounded-bottom text-center"
+              >
+                <h4>{{ product.title }}</h4>
+                <p>{{ product.description }}</p>
+                <div class="pricing">
+                  <p class="text-dark fs-5 fw-bold m-0">
+                    Price: {{ product.price }}
+                  </p>
+                </div>
+                <div
+                  class="d-flex justify-content-center align-items-center flex-wrap mt-3"
+                >
+                  <a href="#" class="btn btn-primary rounded-pill px-4 me-2"
+                    >Add to Bag</a
+                  >
+                  <a
+                    href="shop-detail.html"
+                    class="btn btn-primary rounded-pill px-4 ms-2"
+                    >Details</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
