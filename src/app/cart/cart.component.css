@@ -1,4 +1,7 @@
 /* CSS Styling for Cart Table */
+* {
+  margin: 0;
+}
 h1 {
   text-align: center;
   margin: 20px;
@@ -104,3 +107,9 @@ td {
 
   top: -25%;
 } */
+
+.ss {
+  position: relative;
+  bottom: 250px;
+  left: 20px;
+}

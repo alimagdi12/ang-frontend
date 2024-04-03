@@ -1,31 +1,80 @@
-<form style="margin-top: 200px;" (ngSubmit)="onSubmit(userId)" class="p-3">
+<form style="margin-top: 200px" (ngSubmit)="onSubmit(userId)" class="p-3">
   <div class="mb-3">
     <label for="username" class="form-label">Username:</label>
-    <input type="text" id="username" name="userName" [(ngModel)]="updatedUserName" class="form-control" required>
+    <input
+      type="text"
+      id="username"
+      name="userName"
+      [(ngModel)]="updatedUserName"
+      class="form-control"
+      required
+    />
   </div>
   <div class="mb-3">
     <label for="fname" class="form-label">First Name:</label>
-    <input type="text" id="fname" name="firstName" [(ngModel)]="updatedFirstName" class="form-control" required>
+    <input
+      type="text"
+      id="fname"
+      name="firstName"
+      [(ngModel)]="updatedFirstName"
+      class="form-control"
+      required
+    />
   </div>
   <div class="mb-3">
     <label for="lname" class="form-label">Last Name:</label>
-    <input type="text" id="lname" name="lastName" [(ngModel)]="updatedLastName" class="form-control" required>
+    <input
+      type="text"
+      id="lname"
+      name="lastName"
+      [(ngModel)]="updatedLastName"
+      class="form-control"
+      required
+    />
   </div>
   <div class="mb-3">
     <label for="birthDay" class="form-label">Birth Day:</label>
-    <input type="text" id="birthDay" name="birthDay" [(ngModel)]="updatedBirthDay" class="form-control" required>
+    <input
+      type="text"
+      id="birthDay"
+      name="birthDay"
+      [(ngModel)]="updatedBirthDay"
+      class="form-control"
+      required
+    />
   </div>
   <div class="mb-3">
     <label for="gender" class="form-label">Gender:</label>
-    <input type="text" id="gender" name="gender" [(ngModel)]="updatedGender" class="form-control" required>
+    <input
+      type="text"
+      id="gender"
+      name="gender"
+      [(ngModel)]="updatedGender"
+      class="form-control"
+      required
+    />
   </div>
   <div class="mb-3">
     <label for="email" class="form-label">Email:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="updatedEmail" class="form-control" required>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      [(ngModel)]="updatedEmail"
+      class="form-control"
+      required
+    />
   </div>
   <div class="mb-3">
     <label for="mobile" class="form-label">Mobile:</label>
-    <input type="text" id="mobile" name="phoneNumber" [(ngModel)]="updatedPhoneNumber" class="form-control" required>
+    <input
+      type="text"
+      id="mobile"
+      name="phoneNumber"
+      [(ngModel)]="updatedPhoneNumber"
+      class="form-control"
+      required
+    />
   </div>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
