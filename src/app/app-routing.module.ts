@@ -24,13 +24,12 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'add-user', component: AddUserComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'admin-products', component: ProductListComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
     children: [
       { path: 'add-product', component: AddProductComponent },
-      { path: 'edit-product', component: EditProductComponent },
+      { path: 'admin-products', component: ProductListComponent },
       { path: 'add-user', component: AddUserComponent },
       { path: 'edit-user', component: EditUserComponent },
     ],
