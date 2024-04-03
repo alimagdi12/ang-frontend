@@ -22,6 +22,7 @@ import { FactComponent } from './fact/fact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FooterComponent } from './footer/footer.component';
     ProductDetailsComponent,
     DashboardComponent,
     FooterComponent,
+    SidebarComponent,
 
   ],
   imports: [

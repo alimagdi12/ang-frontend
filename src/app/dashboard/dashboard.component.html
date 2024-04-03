@@ -1,14 +1,4 @@
-<div class="sidebar" style="margin-top: 100px">
-  <a
-    routerLinkActive="active"
-    [routerLinkActiveOptions]="{ exact: true }"
-    routerLink="add-product"
-    >Add-product</a
-  >
-  <a routerLinkActive="active" routerLink="admin-products">Admin-products</a>
-  <a routerLinkActive="active" routerLink="add-user">Add-user</a>
-  <a routerLinkActive="active" routerLink="edit-user">Edit-user</a>
-</div>
+<app-sidebar></app-sidebar>
 
 <div class="content">
   <router-outlet></router-outlet>
