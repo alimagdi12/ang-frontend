@@ -1,11 +1,15 @@
-<p style="margin-top: 200px">dashboard works!</p>
-<nav>
-  <ul>
-    <li><a routerLink="add-product">add-product</a></li>
-    <li><a routerLink="admin-products">admin-products</a></li>
-    <br />
-    <li><a routerLink="add-user">add-user</a></li>
-    <li><a routerLink="edit-user">edit-user</a></li>
-  </ul>
-</nav>
-<router-outlet></router-outlet>
+<div class="sidebar" style="margin-top: 100px">
+  <a
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    routerLink="add-product"
+    >Add-product</a
+  >
+  <a routerLinkActive="active" routerLink="admin-products">Admin-products</a>
+  <a routerLinkActive="active" routerLink="add-user">Add-user</a>
+  <a routerLinkActive="active" routerLink="edit-user">Edit-user</a>
+</div>
+
+<div class="content">
+  <router-outlet></router-outlet>
+</div>
