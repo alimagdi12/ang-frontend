@@ -21,6 +21,7 @@ import { BannerComponent } from './banner/banner.component';
 import { FactComponent } from './fact/fact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FactComponent,
     ProductDetailsComponent,
     DashboardComponent,
+    FooterComponent,
 
   ],
   imports: [

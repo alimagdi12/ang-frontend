@@ -1,18 +1,49 @@
-.fruite-img {
-    height: 400px; /* Set a fixed height for the image container */
-    overflow: hidden; /* Hide any overflow to maintain the fixed height */
+.fruite-img 
+{
+height: 400px; /* Set a fixed height for the image container */
+overflow: hidden; /* Hide any overflow to maintain the fixed height */
 }
 
 .fruite-img img {
-    object-fit: cover; /* Ensure the image covers the container without stretching */
-    height: 100%; /* Make the image fill the entire container */
-    width: 100%; /* Make the image fill the entire container */
+object-fit: cover; /* Ensure the image covers the container without stretching */
+height: 100%; /* Make the image fill the entire container */
+width: 100%; /* Make the image fill the entire container */
 }
 
-            .vesitable-img img {
-    height: 400px; /* Set the desired height */
-    object-fit: cover; /* Maintain aspect ratio and cover the container */
-    width: 100%; /* Make sure the width is 100% */
+.carousel-item{
+height: 800px; /* Set a fixed height for the image container */
+overflow: hidden;
+}
+
+.carousel-item img {
+object-fit: cover; /* Ensure the image covers the container without stretching */
+height: 100%; /* Make the image fill the entire container */
+width: 100%; /* Make the image fill the entire container */
+}
+.service-item{
+height: 800px; /* Set a fixed height for the image container */
+}
+
+.service-item img {
+object-fit: cover; /* Ensure the image covers the container without stretching */
+height: 100%; /* Make the image fill the entire container */
+width: 100%; /* Make the image fill the entire container */
+}
+.card-img{
+height: 250px; /* Set a fixed height for the image container */
+overflow: hidden;
+}
+.card-img2{
+height: 650px; /* Set a fixed height for the image container */
+overflow: hidden;
+width: 100%;
+object-fit: cover;
+}
+
+.vesitable-img img {
+height: 400px; /* Set the desired height */
+object-fit: cover; /* Maintain aspect ratio and cover the container */
+width: 100%; /* Make sure the width is 100% */
 }
 
 
@@ -512,102 +543,7 @@
 }
 /*** Footer End ***/
 
-.search-sort-filter {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f0f0f0;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.custom-icon {
+    color: #6E6C55;
   }
   
-  .search-sort-filter input[type="text"] {
-    flex: 1;
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-  }
-  
-  .search-sort-filter select {
-    padding: 8px;
-    border: none;
-    border-radius: 5px;
-    outline: none;
-    background-color: #ffffff;
-    color: #333333;
-  }
-  
-  .search-sort-filter select:hover {
-    cursor: pointer;
-  }
-  
-  .container-fluid.fruite {
-    background-color: #f9f9f9;
-    padding: 20px 0;
-  }
-  
-  .container-fluid.fruite .container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-  }
-  
-  .fruite-item {
-    overflow: hidden;
-    position: relative;
-  }
-  
-  .fruite-item .fruite-img {
-    position: relative;
-  }
-  
-  .fruite-item .fruite-img img {
-    transition: transform 0.3s ease;
-  }
-  
-  .fruite-item:hover .fruite-img img {
-    transform: scale(1.1);
-  }
-  
-  .text-white.bg-secondary {
-    background-color: #ff6b6b;
-    color: #ffffff;
-    font-size: 12px;
-    padding: 5px 10px;
-    border-radius: 5px;
-  }
-  
-  .text-white.bg-secondary.new {
-    background-color: #45aaf2;
-  }
-  
-  .border-secondary {
-    border-color: #ced4da !important;
-  }
-  
-  .btn-primary {
-    background-color: #ff6b6b;
-    border-color: #ff6b6b;
-  }
-  
-  .btn-primary:hover {
-    background-color: #ff5151;
-    border-color: #ff5151;
-  }
-/* CSS for centering the price under the description in the card */
-.text-center {
-    text-align: center;
-  }
-  
-  .pricing {
-    margin-top: 10px;
-  }
-  .mt-5 {
-    margin-top: 100px; /* Adjust the value as needed */
-  }
-  .marginsss{
-    margin-top: 50px;
-  }
