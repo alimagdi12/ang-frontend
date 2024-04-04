@@ -1,48 +1,224 @@
-<form style="margin-top: 20px;" (ngSubmit)="onSubmit()" [formGroup]="signupForm" class="p-3">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username:</label>
-        <input formControlName="username" class="form-control">
+<!-- signup.component.html -->
+<form
+  style="margin-top: 200px"
+  [formGroup]="registerForm"
+  (ngSubmit)="onSubmit()"
+  class="p-3"
+>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username:</label>
+    <input
+      type="text"
+      id="username"
+      name="username"
+      formControlName="username"
+      class="form-control"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('username').touched && getFormControl('username').errors
+      "
+    >
+      <div *ngIf="getFormControl('username').errors['required']">
+        must write your username
       </div>
-
-      <div class="mb-3">
-        <label for="firstName" class="form-label">First Name:</label>
-        <input formControlName="firstName" class="form-control">
+      <div *ngIf="getFormControl('username').errors['minlength']">
+        the minlength username is 5 characters
+        {{ getFormControl("username").errors["minlength"]["requiredLength"] }}
+        but you enter
+        {{ getFormControl("username").errors["minlength"]["actualLength"] }}
       </div>
-
-      <div class="mb-3">
-        <label for="lastName" class="form-label">Last Name:</label>
-        <input formControlName="lastName" class="form-control">
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="firstName" class="form-label">First Name:</label>
+    <input
+      type="text"
+      formControlName="firstName"
+      id="firstName"
+      name="firstName"
+      class="form-control"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('firstName').touched &&
+        getFormControl('firstName').errors
+      "
+    >
+      <div *ngIf="getFormControl('firstName').errors['required']">
+        must write your firstName
       </div>
-
-      <div class="mb-3">
-        <label for="birthday" class="form-label">Birthday:</label>
-        <input formControlName="birthday" type="date" class="form-control">
+      <div *ngIf="getFormControl('firstName').errors['minlength']">
+        the minlength firstName is 5 characters
+        {{ getFormControl("firstName").errors["minlength"]["requiredLength"] }}
+        but you enter
+        {{ getFormControl("firstName").errors["minlength"]["actualLength"] }}
       </div>
-
-      <div class="mb-3">
-        <label for="gender" class="form-label">Gender:</label>
-        <input formControlName="gender" type="text" class="form-control">
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="lastName" class="form-label">Last Name:</label>
+    <input
+      type="text"
+      formControlName="lastName"
+      id="lastName"
+      name="lastName"
+      class="form-control"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('lastName').touched && getFormControl('lastName').errors
+      "
+    >
+      <div *ngIf="getFormControl('lastName').errors['required']">
+        must write your lastName
       </div>
-
-      <div class="mb-3">
-        <label for="email" class="form-label">Email:</label>
-        <input formControlName="email" class="form-control">
+      <div *ngIf="getFormControl('lastName').errors['minlength']">
+        the minlength lastName is 5 characters
+        {{ getFormControl("lastName").errors["minlength"]["requiredLength"] }}
+        but you enter
+        {{ getFormControl("lastName").errors["minlength"]["actualLength"] }}
       </div>
-
-      <div class="mb-3">
-        <label for="mobile" class="form-label">Mobile:</label>
-        <input formControlName="mobile" class="form-control">
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="birthday" class="form-label">Birthday:</label>
+    <input type="text" id="birthday" formControlName="birthday" name="birthday" class="form-control" />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('birthday').touched && getFormControl('birthday').errors
+      "
+    >
+      <div *ngIf="getFormControl('birthday').errors['required']">
+        must write your birthday
       </div>
-
-      <div class="mb-3">
-        <label for="password" class="form-label">Password:</label>
-        <input formControlName="password" type="password" class="form-control">
+      <div *ngIf="getFormControl('birthday').errors['pattern']">
+        Date of Birth must be a valid date in the format YYYY-MM-DD
       </div>
+    </div>
 
-      <div class="mb-3">
-        <label for="confirmPassword" class="form-label">Confirm Password:</label>
-        <input formControlName="confirmPassword" type="password" class="form-control">
+  </div>
+
+  <div class="mb-3">
+    <input type="radio" id="male" value="male" formControlName="gender" />
+    <label for="male">Male</label><br />
+    <input type="radio" id="female" value="female" formControlName="gender" />
+    <label for="female">Female</label><br />
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-control"
+      formControlName="email"
+    />
+    <div
+      class="errors"
+      *ngIf="getFormControl('email').touched && getFormControl('email').errors"
+    >
+      <div *ngIf="getFormControl('email').errors['required']">
+        Email is required
       </div>
+      <div *ngIf="getFormControl('email').errors['pattern']">
+        Please enter a valid email
+      </div>
+    </div>
+  </div>
 
-      <button type="submit"  class="btn btn-primary">Signup</button>
-    </form>
+  <div class="mb-3">
+    <label for="mobile" class="form-label">Mobile:</label>
+    <input
+      type="text"
+      formControlName="mobile"
+      id="mobile"
+      name="mobile"
+      class="form-control"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('mobile').touched && getFormControl('mobile').errors
+      "
+    >
+      <div *ngIf="getFormControl('mobile').errors['required']">
+        must write your mobile
+      </div>
+      <div *ngIf="getFormControl('mobile').errors['minlength']">
+        the length of mobile number is 11 number
+        {{ getFormControl("mobile").errors["minlength"]["requiredLength"] }}
+        but you enter
+        {{ getFormControl("mobile").errors["minlength"]["actualLength"] }}
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password:</label>
+    <input
+      type="password"
+      formControlName="password"
+      id="password"
+      name="password"
+      class="form-control"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('password').touched && getFormControl('password').errors
+      "
+    >
+      <div *ngIf="getFormControl('password').errors['required']">
+        must write your password
+      </div>
+      <div *ngIf="getFormControl('password').errors['minlength']">
+        the Minlength of password characters is 8 number
+        {{ getFormControl("password").errors["minlength"]["requiredLength"] }}
+        but you enter
+        {{ getFormControl("password").errors["minlength"]["actualLength"] }}
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">confirm password:</label>
+    <input
+      type="password"
+      id="password"
+      name="confirmPassword"
+      class="form-control"
+      formControlName="confirmPassword"
+    />
+    <div
+      class="errors"
+      *ngIf="
+        getFormControl('confirmPassword').touched &&
+        getFormControl('confirmPassword').errors
+      "
+    >
+      <div *ngIf="getFormControl('confirmPassword').errors['required']">
+        must write your confirmPassword
+      </div>
+      <div *ngIf="getFormControl('confirmPassword').errors['minlength']">
+        the length of confirmPassword number is 8 number
+        {{
+          getFormControl("confirmPassword").errors["minlength"][
+            "requiredLength"
+          ]
+        }}
+        but you enter
+        {{
+          getFormControl("confirmPassword").errors["minlength"]["actualLength"]
+        }}
+      </div>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Signup</button>
+</form>

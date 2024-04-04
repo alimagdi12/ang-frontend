@@ -1,67 +1,97 @@
+// signup.component.ts
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import necessary forms modules
 import { AuthService } from '../auth.service';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}$/;
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent {
-  signupForm: FormGroup; // Declare the form group
+  username: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  birthday: string = '';
+  gender: string = '';
+  email: string = '';
+  mobile: string = '';
+  password: string = '';
+  confirmPassword: string = '';
 
-  constructor(private formBuilder: FormBuilder, private authService: AuthService) {
-    // Initialize the form group with form controls and validators
-    this.signupForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      birthday: ['', Validators.required],
-      gender: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      mobile: ['', [Validators.required, Validators.pattern(/^(011|012|010)\d{8}$/)]],
-      password: ['', [Validators.required, Validators.minLength(8), this.passwordValidator]],
-      confirmPassword: ['', Validators.required]
-    }, { validators: this.matchPassword });
-  }
+  constructor(private authService: AuthService) {}
 
-  // Custom validator for password complexity
-  passwordValidator(control: any) {
-    if (!control.value) {
-      return null;
-    }
+  registerForm = new FormGroup({
+    username: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    mobile: new FormControl('', [
+      Validators.required,
+      Validators.minLength(11),
+      Validators.maxLength(11),
+    ]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
+    confirmPassword: new FormControl('', [
+      Validators.required,
+      Validators.minLength(8),
+    ]),
 
-    const containsLowercase = /[a-z]/.test(control.value);
-    const containsUppercase = /[A-Z]/.test(control.value);
-    const containsNumber = /\d/.test(control.value);
+    email: new FormControl('', [
+      Validators.required,
+      Validators.pattern(emailRegex),
+    ]),
 
-    const valid = containsLowercase && containsUppercase && containsNumber;
-    return valid ? null : { invalidPassword: true };
-  }
+    birthday: new FormControl('', [
+      Validators.required,
+      Validators.pattern(/^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/),
+    ]),
 
-  // Custom validator for confirm password matching
-  matchPassword(formGroup: FormGroup) {
-    const password = formGroup.get('password');
-    const confirmPassword = formGroup.get('confirmPassword');
-
-    return password && confirmPassword && password.value === confirmPassword.value ? null : { passwordMismatch: true };
-  }
+    agreement: new FormControl<boolean>(false, [Validators.requiredTrue]),
+    gender: new FormControl('male', [Validators.required]),
+  });
 
   onSubmit() {
-    if (this.signupForm.invalid) {
-      return; // Form is invalid, do not submit
-    }
-
-    // Proceed with signup
-    this.authService.signup(this.signupForm.value).subscribe(
-      response => {
-        console.log('Signup successful:', response);
-        // Redirect to login page or other page
-      },
-      error => {
-        console.error('Signup error:', error);
-        // Handle signup error
-      }
-    );
+    console.log(this.registerForm.value.username);
+    this.authService
+      .signup({
+        userName: this.registerForm.value.username,
+        fName: this.registerForm.value.firstName,
+        lName: this.registerForm.value.lastName,
+        birthday: this.registerForm.value.birthday,
+        gender: this.registerForm.value.gender,
+        email: this.registerForm.value.email,
+        mobile: this.registerForm.value.mobile,
+        password: this.registerForm.value.password,
+        confirmPassword: this.registerForm.value.confirmPassword,
+      })
+      .subscribe(
+        (response) => {
+          console.log('Signup successful:', response);
+          // Redirect to login page or other page
+          this.registerForm.reset(this.registerForm.value);
+        },
+        (error) => {
+          console.error('Signup error:', error);
+          // Handle signup error
+        }
+      );
+  }
+  getFormControl(controlName: String) {
+    // @ts-ignore
+    return this.registerForm.controls[controlName];
   }
 }
