@@ -105,6 +105,8 @@ export class CartComponent implements OnInit {
     this.userService.getStripePaymentLink(totalPrice).subscribe(
       (response: any) => {
         this.stripePaymentLink = response.url;
+        console.log(this.stripePaymentLink);
+
         window.open(this.stripePaymentLink, '_blank');
       },
       (error: any) => {
