@@ -53,6 +53,10 @@
     background-color: #8B4513; /* Brown color */
     color: #fff;
   }
+  .btn-primary  :hover {
+    background-color: #3D2216; /* Brown color */
+    color: #fff;
+  }
   
   .btn-danger {
     background-color: #8B0000; /* Darker brown color */
