@@ -12,6 +12,8 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './success/success.component';
 
 const routes: Routes = [
   { path: '', component: HeroSectionComponent },
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'add-user', component: AddUserComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'paymentt', component: PaymentComponent },
+  { path: 'success', component: SuccessComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
