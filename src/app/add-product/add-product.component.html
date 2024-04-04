@@ -1,0 +1,72 @@
+<h2 style="margin-top: 200px;">Add Product</h2>
+
+<div class="card mb-4">
+  <div class="card-header">Account Details</div>
+  <div class="card-body">
+    <form (ngSubmit)="onSubmit()" id="registrationForm">
+      <!-- Form Group (username)-->
+      <!-- <div class="mb-3">
+        <label class="small mb-1" for="inputUsername"
+          >Username (how your name will appear to other users on the
+          site)</label
+        >
+        <input
+          class="form-control"
+          id="inputUsername"
+          type="text"
+          placeholder="Enter your username"
+        />
+      </div> -->
+      <!-- Form Row-->
+      <div class="row gx-3 mb-3">
+        <!-- Form Group (first name)-->
+        <div class="col-md-6">
+          <label class="small mb-1" for="category">Category</label>
+          <input type="text" id="category" name="category" [(ngModel)]="product.category" class="form-control" required>
+          <div class="validation-message" id="fnameError"></div>
+        </div>
+        <!-- Form Group (last name)-->
+        <div class="col-md-6">
+          <label class="small mb-1" for="title">Title</label>
+          <input type="text" id="title" name="title" [(ngModel)]="product.title" class="form-control" required>
+          <div class="validation-message" id="lnameError"></div>
+        </div>
+      </div>
+      <!-- Form Row        -->
+      <div class="row gx-3 mb-3">
+        <!-- Form Group (organization name)-->
+        <div class="col-md-6">
+          <label class="small mb-1" for="price">price</label>
+          <input type="number" id="price" name="price" [(ngModel)]="product.price" class="form-control" required>
+        </div>
+        <!-- Form Group (location)-->
+        <div class="col-md-6">
+          <label class="small mb-1" for="description">Description</label>
+          <textarea id="description" name="description" [(ngModel)]="product.description" class="form-control" required></textarea>
+        </div>
+      </div>
+      <!-- Form Group (email address)-->
+      <div class="mb-3">
+        <label class="small mb-1" for="details">Details</label>
+        <textarea id="details" name="details" [(ngModel)]="product.details" class="form-control" required></textarea>
+        <div class="validation-message" id="emailError"></div>
+      </div>
+      <!-- Form Row-->
+      <div class="row gx-3 mb-3">
+        <!-- Form Group (phone number)-->
+        <div class="col-md-6">
+          <label class="small mb-1" for="imageUrl">Image URL</label>
+          <input type="url" id="imageUrl" name="imageUrl" [(ngModel)]="product.imageUrl" class="form-control" required>
+          <div class="validation-message" id="mobileError"></div>
+        </div>
+        <!-- Form Group (birthday)-->
+        <div class="col-md-6">
+          <label class="small mb-1" for="rating">Rating</label>
+          <input type="number" id="rating" name="rating" [(ngModel)]="product.rating" class="form-control">
+        </div>
+      </div>
+      <!-- Save changes button-->
+      <button class="btn btn-primary" type="submit">Add Product</button>
+    </form>
+  </div>
+</div>
