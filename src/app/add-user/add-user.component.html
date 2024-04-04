@@ -1,5 +1,5 @@
 <!-- signup.component.html -->
-<form style="margin-top: 200px;" (ngSubmit)="onSubmit()" class="p-3">
+<!-- <form style="margin-top: 200px;" (ngSubmit)="onSubmit()" class="p-3">
   <div class="mb-3">
     <label for="username" class="form-label">Username:</label>
     <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control" required>
@@ -39,4 +39,104 @@
   </div>
 
   <button type="submit" class="btn btn-primary">Add User </button>
-</form>
+</form> -->
+
+<div style="margin-top: 100px;" class="col-xl-8">
+  <!-- Account details card-->
+  <div class="card mb-4">
+    <div class="card-header">Add new user</div>
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" id="registrationForm">
+        <!-- Form Group (username)-->
+        <!-- <div class="mb-3">
+          <label class="small mb-1" for="inputUsername"
+            >Username (how your name will appear to other users on the
+            site)</label
+          >
+          <input
+            class="form-control"
+            id="inputUsername"
+            type="text"
+            placeholder="Enter your username"
+          />
+        </div> -->
+        <!-- Form Row-->
+        <div class="row gx-3 mb-3">
+          <!-- Form Group (first name)-->
+          <div class="col-md-6">
+            <label class="small mb-1" for="firstName">First name</label>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="firstName" class="form-control" required>
+            <div class="validation-message" id="fnameError"></div>
+          </div>
+          <!-- Form Group (last name)-->
+          <div class="col-md-6">
+            <label class="small mb-1" for="lastName">Last name</label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="lastName" class="form-control" required>
+            <div class="validation-message" id="lnameError"></div>
+          </div>
+        </div>
+        <!-- Form Row        -->
+        <div class="row gx-3 mb-3">
+          <!-- Form Group (organization name)-->
+          <div class="col-md-6">
+            <label class="small mb-1" for="username">Username</label>
+            <input type="text" id="username" name="username" [(ngModel)]="username" class="form-control" required>
+          </div>
+          <!-- Form Group (location)-->
+          <div class="col-md-6">
+            <label class="small mb-1" for="gender">Gender</label>
+            <select
+              id="gender"
+              name="gender"
+              [(ngModel)]="gender"
+              class="form-select"
+              required
+            >
+              <option value="" disabled selected>Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+        </div>
+        <!-- Form Group (email address)-->
+        <div class="mb-3">
+          <label class="small mb-1" for="email">Email address</label>
+          <input type="email" id="email" name="email" [(ngModel)]="email" class="form-control" required>
+          <div class="validation-message" id="emailError"></div>
+        </div>
+        <!-- Form Row-->
+        <div class="row gx-3 mb-3">
+          <!-- Form Group (phone number)-->
+          <div class="col-md-6">
+            <label class="small mb-1" for="mobile">Phone number</label>
+            <input type="text" id="mobile" name="mobile" [(ngModel)]="mobile" class="form-control" required>
+            <div class="validation-message" id="mobileError"></div>
+          </div>
+          <!-- Form Group (birthday)-->
+          <div class="col-md-6">
+            <label class="small mb-1" for="birthday">Birthday</label>
+            <input
+              id="birthDay"
+              name="birthDay"
+              [(ngModel)]="birthday"
+              class="form-control"
+              type="date"
+              name="birthday"
+              placeholder="Enter your birthday"
+            />
+          </div>
+          <div class="col-md-6">
+            <label class="small mb-1" for="password">Password</label>
+            <input type="password" id="password" name="password" [(ngModel)]="password" class="form-control" required>
+          </div>
+          <div class="col-md-6">
+            <label class="small mb-1" for="password">Confirm Password</label>
+            <input type="password" id="password" name="confirmPassword" [(ngModel)]="confirmPassword" class="form-control" required>
+          </div>
+        </div>
+        <!-- Save changes button-->
+        <button class="btn btn-primary" type="submit">Save changes</button>
+      </form>
+    </div>
+  </div>
+</div>
