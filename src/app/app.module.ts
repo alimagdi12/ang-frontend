@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
+import {
+  BrowserModule,
+  provideClientHydration,
+} from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,7 +25,13 @@ import { FactComponent } from './fact/fact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
+<<<<<<< HEAD
 import { SidebarComponent } from './sidebar/sidebar.component';
+=======
+import { PaymentComponent } from './payment/payment.component';
+import { NgxPayPalModule } from 'ngx-paypal';
+import { SuccessComponent } from './success/success.component';
+>>>>>>> bb32339e946aa9f9e00c6e01135c144cfd70f04d
 
 @NgModule({
   declarations: [
@@ -43,8 +52,13 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ProductDetailsComponent,
     DashboardComponent,
     FooterComponent,
+<<<<<<< HEAD
     SidebarComponent,
 
+=======
+    PaymentComponent,
+    SuccessComponent,
+>>>>>>> bb32339e946aa9f9e00c6e01135c144cfd70f04d
   ],
   imports: [
     BrowserModule,
@@ -52,12 +66,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     HttpClientModule,
     FormsModule,
     MatSnackBarModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPayPalModule,
   ],
-  providers: [
-    provideClientHydration(),
-    provideAnimationsAsync()
-  ],
-  bootstrap: [AppComponent]
+  providers: [provideClientHydration(), provideAnimationsAsync()],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

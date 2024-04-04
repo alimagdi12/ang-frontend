@@ -12,7 +12,7 @@ export class CartComponent implements OnInit {
   products: any[] = [];
   totalPrice: number = 0;
   stripePaymentLink: string = '';
-  selectedOption: number = 1;
+  selectedOption: number = 0;
 
   constructor(
     private userService: UserService,
@@ -99,7 +99,7 @@ export class CartComponent implements OnInit {
   }
 
   navigateTopaypal() {
-    this.router.navigate(['/']);
+    this.router.navigate(['paymentt']);
   }
   fetchStripePaymentLink(totalPrice: number) {
     this.userService.getStripePaymentLink(totalPrice).subscribe(
@@ -117,8 +117,9 @@ export class CartComponent implements OnInit {
   }
   paymentMethod() {
     this.handleRadioButtonSelection(this.selectedOption);
-
-    if (this.selectedOption === 1) {
+    if (this.selectedOption === 0) {
+      alert('Select  Payment Method');
+    } else if (this.selectedOption === 1) {
       this.fetchStripePaymentLink(this.totalPrice);
     } else if (this.selectedOption === 2) {
       this.navigateTopaypal();
