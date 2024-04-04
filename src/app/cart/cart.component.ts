@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { ProductService } from '../product.service';
 import { Router } from '@angular/router';
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -17,14 +17,20 @@ export class CartComponent implements OnInit {
   constructor(
     private userService: UserService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private _snackBar: MatSnackBar
   ) {}
 
   ngOnInit() {
     this.userService.getCart().subscribe(
       (response: any) => {
         this.products = response.products;
+        console.log(response);
+       
         this.totalPrice = response.totalPrice;
+
+        console.log(this.totalPrice);
+        
       },
       (error: any) => {
         console.error(error);
@@ -102,7 +108,7 @@ export class CartComponent implements OnInit {
     this.router.navigate(['paymentt']);
   }
   fetchStripePaymentLink(totalPrice: number) {
-    this.userService.getStripePaymentLink(totalPrice).subscribe(
+    this.userService.getStripePaymentLink(totalPrice+30).subscribe(
       (response: any) => {
         this.stripePaymentLink = response.url;
         console.log(this.stripePaymentLink);
@@ -120,9 +126,27 @@ export class CartComponent implements OnInit {
     if (this.selectedOption === 0) {
       alert('Select  Payment Method');
     } else if (this.selectedOption === 1) {
+      console.log(this.totalPrice);
+      
       this.fetchStripePaymentLink(this.totalPrice);
     } else if (this.selectedOption === 2) {
       this.navigateTopaypal();
     }
+  }
+  addToCart(productId: string): void {
+    this.userService.addToCart(productId).subscribe(
+      (response: any) => {
+        console.log(response);
+        this._snackBar.open('Product added to cart', 'Close', {
+          duration: 3000, // Display for 3 seconds
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        this._snackBar.open('Error adding product to cart', 'Close', {
+          duration: 3000, // Display for 3 seconds
+        });
+      }
+    );
   }
 }

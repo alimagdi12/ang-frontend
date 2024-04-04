@@ -1,4 +1,4 @@
-import { Router } from '@angular/router'; // Import the Router service
+import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import {
@@ -7,39 +7,50 @@ import {
   debounceTime,
   distinctUntilChanged,
   of,
-  reduce,
-  scan,
   switchMap,
-  tap,
-  throwError,
 } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import { log } from 'console';
 import { MatPaginator } from '@angular/material/paginator';
-import { After } from 'v8';
-import { Pipe, PipeTransform } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-@Pipe({ name: 'safehtml' })
-export class SafeHtmlPipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {}
-  transform(value: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(value);
-  }
-}
+import { SafeHtml, DomSanitizer } from '@angular/platform-browser';
+import { UserService } from '../user.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
-  styleUrl: './product.component.css',
+  styleUrls: ['./product.component.css'],
 })
-export class ProductComponent {
+export class ProductComponent implements OnInit, OnDestroy {
   products: any[] = [];
   AllProducts: any[] = [];
-  constructor(private productService: ProductService, private router: Router) {} // Inject the Router service here
+  pageSize: number = 4;
+  currentPage: number = 1;
+  displayedData: any[] = [];
+  original: any;
+  loading = false;
+  errorMessage = '';
+  searchControl = new FormControl();
+  subscriptions = new Subscription();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(
+    private productService: ProductService,
+    private router: Router,
+    private userService: UserService,
+    private sanitizer: DomSanitizer,
+    private _snackBar: MatSnackBar,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     this.getProducts();
     this.getAllProducts();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   onNavigate(event: Event, productId: string) {
@@ -50,66 +61,49 @@ export class ProductComponent {
     this.productService.getAllProducts().subscribe((data: any) => {
       this.products = data.data;
       this.AllProducts = data.data;
+      this.displayedData = this.products.slice(
+        0,
+        this.paginator.pageSize
+      );
     });
-  }
-  pageSize: number = 4;
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  currentPage: number = 1;
-  displayedData: any[] = [];
-
-  original: any;
-  loading = false;
-  errorMessage = '';
-  searchControl = new FormControl();
-  subscriptions = new Subscription();
-
-  // onPageChange(pageNumber: number) {
-  //   this.currentPage = pageNumber;
-  //   this.updateDisplayedData();
-  // }
-
-  updateDisplayedData() {}
-
-  ngAfterViewInit(): void {
-    // this.onPageChange(1);
-    // this.getAllProducts();
   }
 
   sort(event: any) {
-    // this.products = this.original
     switch (event.target.value) {
       case 'Low': {
         this.products = this.products.sort(
-          (low, high) => low.price - high.price
+          (low: any, high: any) => low.price - high.price
         );
-        this.displayedData = this.products;
+        this.displayedData = this.products.slice(
+          0,
+          this.paginator.pageSize
+        );;
         break;
       }
-
       case 'High': {
         this.products = this.products.sort(
-          (low, high) => high.price - low.price
+          (low: any, high: any) => high.price - low.price
         );
-
-        this.displayedData = this.products;
+        this.displayedData = this.products.slice(
+          0,
+          this.paginator.pageSize
+        );;
         break;
       }
-
       default: {
-        this.displayedData = this.products;
+        this.displayedData = this.products.slice(
+          0,
+          this.paginator.pageSize
+        );
+;
         break;
       }
     }
     return this.products;
   }
 
-  ///////////////////////////////////////////////////////////////////////
-
   getAllProducts(): void {
     this.products = this.AllProducts;
-    if (this.searchControl.value === '') {
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
-    }
     this.searchControl.valueChanges
       .pipe(
         debounceTime(300),
@@ -118,35 +112,40 @@ export class ProductComponent {
           if (!product) {
             return this.productService.getAllProducts();
           } else {
-            return this.filterProductsByTitle(product!);
-            console.log(product);
+            return this.filterProductsByTitle(product);
           }
         }),
         catchError((error) => {
           console.error('Error during search:', error);
-          return of([]); // Return an empty array in case of an error
+          return of([]);
         })
       )
       .subscribe((res) => {
-        console.log(res);
         if (res.data) {
           this.products = res.data;
-          this.displayedData = this.products;
-          console.log(res);
+          this.displayedData = this.products.slice(
+            0,
+            this.paginator.pageSize
+          );
+  ;
         } else {
           this.products = res;
-          this.displayedData = this.products;
-          console.log(res);
+          this.displayedData = this.products.slice(
+            0,
+            this.paginator.pageSize
+          );
+  ;
         }
       });
 
     this.subscriptions.add(
       this.productService.getAllProducts().subscribe({
         next: (products) => {
-          console.log(products);
-
           this.products = products.data;
-          this.displayedData = this.products.slice(0, this.paginator?.pageSize);
+          this.displayedData = this.products.slice(
+            0,
+            this.paginator?.pageSize
+          );
           this.original = products;
           this.loading = false;
         },
@@ -159,11 +158,11 @@ export class ProductComponent {
 
   filterBy(event: any) {
     this.products = this.products.filter(
-      (p) => p.category === event.target.value
+      (p: any) => p.category === event.target.value
     );
     this.displayedData = this.products.slice(0, this.paginator.pageSize);
-    console.log(this.products);
   }
+
   filterProductsByTitle(searchProduct: string) {
     this.products = this.AllProducts;
     const filteredProducts = this.products?.filter((product) =>
@@ -171,12 +170,27 @@ export class ProductComponent {
     );
     return of(filteredProducts);
   }
+
   onPageChange(event: any): void {
     const startIndex = event.pageIndex * event.pageSize;
     const endIndex = startIndex + event.pageSize;
     this.displayedData = this.products.slice(startIndex, endIndex);
   }
-  ngOnDestroy(): void {
-    this.subscriptions.unsubscribe();
+
+  addToCart(productId: string): void {
+    this.userService.addToCart(productId).subscribe(
+      (response: any) => {
+        console.log(response);
+        this._snackBar.open('Product added to cart', 'Close', {
+          duration: 3000,
+        });
+      },
+      (error: any) => {
+        console.error(error);
+        this._snackBar.open('Error adding product to cart', 'Close', {
+          duration: 3000,
+        });
+      }
+    );
   }
 }

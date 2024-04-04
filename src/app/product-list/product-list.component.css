@@ -49,13 +49,13 @@
     transform: scale(1.1);
   }
   
-  .btn-primary {
+  .btn-custom {
     background-color: #8B4513; /* Brown color */
-    color: #fff;
+    color: white;
   }
-  .btn-primary  :hover {
+  .btn-custom:hover {
     background-color: #3D2216; /* Brown color */
-    color: #fff;
+    color: white;
   }
   
   .btn-danger {

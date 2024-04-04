@@ -1,224 +1,114 @@
 <!-- signup.component.html -->
-<form
-  style="margin-top: 200px"
-  [formGroup]="registerForm"
-  (ngSubmit)="onSubmit()"
-  class="p-3"
->
+<form style="margin-top: 200px;" [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="signup-form p-3">
   <div class="mb-3">
-    <label for="username" class="form-label">Username:</label>
-    <input
-      type="text"
-      id="username"
-      name="username"
-      formControlName="username"
-      class="form-control"
-    />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('username').touched && getFormControl('username').errors
-      "
-    >
-      <div *ngIf="getFormControl('username').errors['required']">
-        must write your username
+      <label for="username" class="form-label">Username:</label>
+      <input type="text" id="username" name="username" formControlName="username" class="form-control" />
+      <div class="errors" *ngIf="getFormControl('username').touched && getFormControl('username').errors">
+          <div *ngIf="getFormControl('username').errors['required']">
+              Must write your username
+          </div>
+          <div *ngIf="getFormControl('username').errors['minlength']">
+              The minimum username length is 5 characters. You entered
+              {{ getFormControl("username").errors["minlength"]["actualLength"] }}
+          </div>
       </div>
-      <div *ngIf="getFormControl('username').errors['minlength']">
-        the minlength username is 5 characters
-        {{ getFormControl("username").errors["minlength"]["requiredLength"] }}
-        but you enter
-        {{ getFormControl("username").errors["minlength"]["actualLength"] }}
-      </div>
-    </div>
   </div>
   <div class="mb-3">
-    <label for="firstName" class="form-label">First Name:</label>
-    <input
-      type="text"
-      formControlName="firstName"
-      id="firstName"
-      name="firstName"
-      class="form-control"
-    />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('firstName').touched &&
-        getFormControl('firstName').errors
-      "
-    >
-      <div *ngIf="getFormControl('firstName').errors['required']">
-        must write your firstName
+      <label for="firstName" class="form-label">First Name:</label>
+      <input type="text" formControlName="firstName" id="firstName" name="firstName" class="form-control" />
+      <div class="errors" *ngIf="getFormControl('firstName').touched && getFormControl('firstName').errors">
+          <div *ngIf="getFormControl('firstName').errors['required']">
+              Must write your first name
+          </div>
+          <div *ngIf="getFormControl('firstName').errors['minlength']">
+              The minimum first name length is 5 characters. You entered
+              {{ getFormControl("firstName").errors["minlength"]["actualLength"] }}
+          </div>
       </div>
-      <div *ngIf="getFormControl('firstName').errors['minlength']">
-        the minlength firstName is 5 characters
-        {{ getFormControl("firstName").errors["minlength"]["requiredLength"] }}
-        but you enter
-        {{ getFormControl("firstName").errors["minlength"]["actualLength"] }}
-      </div>
-    </div>
   </div>
   <div class="mb-3">
-    <label for="lastName" class="form-label">Last Name:</label>
-    <input
-      type="text"
-      formControlName="lastName"
-      id="lastName"
-      name="lastName"
-      class="form-control"
-    />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('lastName').touched && getFormControl('lastName').errors
-      "
-    >
-      <div *ngIf="getFormControl('lastName').errors['required']">
-        must write your lastName
+      <label for="lastName" class="form-label">Last Name:</label>
+      <input type="text" formControlName="lastName" id="lastName" name="lastName" class="form-control" />
+      <div class="errors" *ngIf="getFormControl('lastName').touched && getFormControl('lastName').errors">
+          <div *ngIf="getFormControl('lastName').errors['required']">
+              Must write your last name
+          </div>
+          <div *ngIf="getFormControl('lastName').errors['minlength']">
+              The minimum last name length is 5 characters. You entered
+              {{ getFormControl("lastName").errors["minlength"]["actualLength"] }}
+          </div>
       </div>
-      <div *ngIf="getFormControl('lastName').errors['minlength']">
-        the minlength lastName is 5 characters
-        {{ getFormControl("lastName").errors["minlength"]["requiredLength"] }}
-        but you enter
-        {{ getFormControl("lastName").errors["minlength"]["actualLength"] }}
-      </div>
-    </div>
   </div>
   <div class="mb-3">
-    <label for="birthday" class="form-label">Birthday:</label>
-    <input type="text" id="birthday" formControlName="birthday" name="birthday" class="form-control" />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('birthday').touched && getFormControl('birthday').errors
-      "
-    >
-      <div *ngIf="getFormControl('birthday').errors['required']">
-        must write your birthday
+      <label for="birthday" class="form-label">Birthday:</label>
+      <input type="text" id="birthday" formControlName="birthday" name="birthday" class="form-control" />
+      <div class="errors" *ngIf="getFormControl('birthday').touched && getFormControl('birthday').errors">
+          <div *ngIf="getFormControl('birthday').errors['required']">
+              Must write your birthday
+          </div>
+          <div *ngIf="getFormControl('birthday').errors['pattern']">
+              Date of Birth must be a valid date in the format YYYY-MM-DD
+          </div>
       </div>
-      <div *ngIf="getFormControl('birthday').errors['pattern']">
-        Date of Birth must be a valid date in the format YYYY-MM-DD
-      </div>
-    </div>
-
   </div>
-
   <div class="mb-3">
-    <input type="radio" id="male" value="male" formControlName="gender" />
-    <label for="male">Male</label><br />
-    <input type="radio" id="female" value="female" formControlName="gender" />
-    <label for="female">Female</label><br />
+      <input type="radio" id="male" value="male" formControlName="gender" />
+      <label for="male">Male</label><br />
+      <input type="radio" id="female" value="female" formControlName="gender" />
+      <label for="female">Female</label><br />
   </div>
-
   <div class="mb-3">
-    <label for="email" class="form-label">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      class="form-control"
-      formControlName="email"
-    />
-    <div
-      class="errors"
-      *ngIf="getFormControl('email').touched && getFormControl('email').errors"
-    >
-      <div *ngIf="getFormControl('email').errors['required']">
-        Email is required
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" name="email" class="form-control" formControlName="email" />
+      <div class="errors" *ngIf="getFormControl('email').touched && getFormControl('email').errors">
+          <div *ngIf="getFormControl('email').errors['required']">
+              Email is required
+          </div>
+          <div *ngIf="getFormControl('email').errors['pattern']">
+              Please enter a valid email
+          </div>
       </div>
-      <div *ngIf="getFormControl('email').errors['pattern']">
-        Please enter a valid email
-      </div>
-    </div>
   </div>
-
   <div class="mb-3">
-    <label for="mobile" class="form-label">Mobile:</label>
-    <input
-      type="text"
-      formControlName="mobile"
-      id="mobile"
-      name="mobile"
-      class="form-control"
-    />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('mobile').touched && getFormControl('mobile').errors
-      "
-    >
-      <div *ngIf="getFormControl('mobile').errors['required']">
-        must write your mobile
+      <label for="mobile" class="form-label">Mobile:</label>
+      <input type="text" formControlName="mobile" id="mobile" name="mobile" class="form-control" />
+      <div class="errors" *ngIf="getFormControl('mobile').touched && getFormControl('mobile').errors">
+          <div *ngIf="getFormControl('mobile').errors['required']">
+              Must write your mobile
+          </div>
+          <div *ngIf="getFormControl('mobile').errors['minlength']">
+              The mobile number must be 11 digits long. You entered
+              {{ getFormControl("mobile").errors["minlength"]["actualLength"] }}
+          </div>
       </div>
-      <div *ngIf="getFormControl('mobile').errors['minlength']">
-        the length of mobile number is 11 number
-        {{ getFormControl("mobile").errors["minlength"]["requiredLength"] }}
-        but you enter
-        {{ getFormControl("mobile").errors["minlength"]["actualLength"] }}
-      </div>
-    </div>
   </div>
-
   <div class="mb-3">
-    <label for="password" class="form-label">Password:</label>
-    <input
-      type="password"
-      formControlName="password"
-      id="password"
-      name="password"
-      class="form-control"
-    />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('password').touched && getFormControl('password').errors
-      "
-    >
-      <div *ngIf="getFormControl('password').errors['required']">
-        must write your password
+      <label for="password" class="form-label">Password:</label>
+      <input type="password" formControlName="password" id="password" name="password" class="form-control" />
+      <div class="errors" *ngIf="getFormControl('password').touched && getFormControl('password').errors">
+          <div *ngIf="getFormControl('password').errors['required']">
+              Must write your password
+          </div>
+          <div *ngIf="getFormControl('password').errors['minlength']">
+              The minimum password length is 8 characters. You entered
+              {{ getFormControl("password").errors["minlength"]["actualLength"] }}
+          </div>
       </div>
-      <div *ngIf="getFormControl('password').errors['minlength']">
-        the Minlength of password characters is 8 number
-        {{ getFormControl("password").errors["minlength"]["requiredLength"] }}
-        but you enter
-        {{ getFormControl("password").errors["minlength"]["actualLength"] }}
-      </div>
-    </div>
   </div>
-
   <div class="mb-3">
-    <label for="password" class="form-label">confirm password:</label>
-    <input
-      type="password"
-      id="password"
-      name="confirmPassword"
-      class="form-control"
-      formControlName="confirmPassword"
-    />
-    <div
-      class="errors"
-      *ngIf="
-        getFormControl('confirmPassword').touched &&
-        getFormControl('confirmPassword').errors
-      "
-    >
-      <div *ngIf="getFormControl('confirmPassword').errors['required']">
-        must write your confirmPassword
+      <label for="confirmPassword" class="form-label">Confirm Password:</label>
+      <input type="password" id="password" name="confirmPassword" class="form-control" formControlName="confirmPassword" />
+      <div class="errors" *ngIf="getFormControl('confirmPassword').touched && getFormControl('confirmPassword').errors">
+          <div *ngIf="getFormControl('confirmPassword').errors['required']">
+              Must write your confirmPassword
+          </div>
+          <div *ngIf="getFormControl('confirmPassword').errors['minlength']">
+              The confirm password must be 8 characters long. You entered
+              {{
+                  getFormControl("confirmPassword").errors["minlength"]["actualLength"]
+              }}
+          </div>
       </div>
-      <div *ngIf="getFormControl('confirmPassword').errors['minlength']">
-        the length of confirmPassword number is 8 number
-        {{
-          getFormControl("confirmPassword").errors["minlength"][
-            "requiredLength"
-          ]
-        }}
-        but you enter
-        {{
-          getFormControl("confirmPassword").errors["minlength"]["actualLength"]
-        }}
-      </div>
-    </div>
   </div>
-
   <button type="submit" class="btn btn-primary">Signup</button>
 </form>

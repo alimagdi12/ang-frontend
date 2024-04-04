@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -15,9 +17,9 @@ export class AddUserComponent {
   email: string = '';
   mobile: string = '';
   password: string = '';
-  confirmPassword:string='';
+  confirmPassword: string = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private snackBar: MatSnackBar) { }
 
   onSubmit() {
     this.authService.signup({
@@ -29,16 +31,27 @@ export class AddUserComponent {
       email: this.email,
       mobile: this.mobile,
       password: this.password,
-      confirmPassword:this.confirmPassword,
+      confirmPassword: this.confirmPassword,
     }).subscribe(
       response => {
+        this.openToast('User added successfully');
         console.log('Signup successful:', response);
         // Redirect to login page or other page
+        this.router.navigate(['/']);
       },
       error => {
         console.error('Signup error:', error);
         // Handle signup error
+        this.openToast('Signup error');
       }
     );
+  }
+
+  openToast(message: string) {
+    this.snackBar.open(message, 'Close', {
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom'
+    });
   }
 }

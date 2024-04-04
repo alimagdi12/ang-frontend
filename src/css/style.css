@@ -1,5 +1,7 @@
 
 /*** Spinner Start ***/
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
 #spinner {
     opacity: 0;
     visibility: hidden;

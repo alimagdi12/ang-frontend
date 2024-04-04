@@ -6,8 +6,8 @@
         <h5 class="card-title">{{ product.title }}</h5>
         <p class="card-text">{{ product.description }}</p>
         <p class="card-text"><small class="text-muted">Price: ${{ product.price }}</small></p>
-        <button class="btn btn-primary" (click)="addToCart(product._id)">Add to Cart</button>
-        <button class="btn btn-primary" (click)="editProduct(product._id)">Edit</button>
+        <button class="btn btn-custom" (click)="addToCart(product._id)">Add to Cart</button>
+        <button class="btn btn-custom" (click)="editProduct(product._id)">Edit</button>
         <button class="btn btn-danger" (click)="deleteProduct(product._id)">Delete</button>
       </div>
     </div>

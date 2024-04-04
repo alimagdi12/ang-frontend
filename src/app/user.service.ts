@@ -116,7 +116,7 @@ export class UserService {
     });
 
     return this.http.post(
-      `${this.baseUrl}/payment`,
+      `${this.baseUrl}/payement`,
       { totalPrice },
       { headers }
     );

@@ -25,13 +25,16 @@ import { FactComponent } from './fact/fact.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FooterComponent } from './footer/footer.component';
-<<<<<<< HEAD
+
 import { SidebarComponent } from './sidebar/sidebar.component';
-=======
-import { PaymentComponent } from './payment/payment.component';
 import { NgxPayPalModule } from 'ngx-paypal';
+
+import { PaymentComponent } from './payment/payment.component';
+
 import { SuccessComponent } from './success/success.component';
->>>>>>> bb32339e946aa9f9e00c6e01135c144cfd70f04d
+import { ToastrModule } from 'ngx-toastr';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 @NgModule({
   declarations: [
@@ -52,13 +55,13 @@ import { SuccessComponent } from './success/success.component';
     ProductDetailsComponent,
     DashboardComponent,
     FooterComponent,
-<<<<<<< HEAD
+
     SidebarComponent,
 
-=======
+
     PaymentComponent,
     SuccessComponent,
->>>>>>> bb32339e946aa9f9e00c6e01135c144cfd70f04d
+
   ],
   imports: [
     BrowserModule,
@@ -68,6 +71,8 @@ import { SuccessComponent } from './success/success.component';
     MatSnackBarModule,
     ReactiveFormsModule,
     NgxPayPalModule,
+    MatPaginatorModule,
+    ToastrModule.forRoot(),
   ],
   providers: [provideClientHydration(), provideAnimationsAsync()],
   bootstrap: [AppComponent],

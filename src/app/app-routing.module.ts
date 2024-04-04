@@ -12,6 +12,10 @@ import { HeroSectionComponent } from './hero-section/hero-section.component';
 import { ProductComponent } from './product/product.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AuthGuard } from './AuthGuard.service';
+import { PaymentComponent } from './payment/payment.component';
+import { SuccessComponent } from './success/success.component';
+import { AuthGuardLogin } from './AuthGuardLogin.service';
 
 const routes: Routes = [
   { path: '', component: HeroSectionComponent },
@@ -31,6 +35,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
     children: [
+      { path: '', redirectTo:'admin-products',pathMatch:'full'},
       { path: 'add-product', component: AddProductComponent },
       { path: 'admin-products', component: ProductListComponent },
       { path: 'add-user', component: AddUserComponent },
